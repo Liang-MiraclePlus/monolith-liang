@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梁婧仪 (Jingyi) | PR 作品集 - Monolith</title>
+    <!-- 引入衬线字体，增加高级感与艺术感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- 引入截图与PDF生成库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            /* 提取自参考图的极简艺术配色 */
+            --bg-color: #F8F9FA; /* 极浅的灰白底色 */
+            --text-main: #2C3E50; /* 深灰蓝，比纯黑更柔和高级 */
+            --text-light: #596A7A;
+            --accent-blue: #1A3B66; /* 核心点缀蓝 (类似参考图的刷色) */
+            --line-color: #D1D8E0;
+            
+            /* 字体栈 */
+            --font-serif: 'Playfair Display', 'Noto Serif SC', 'Songti SC', serif;
+            --font-sans: 'Inter', -apple-system, 'PingFang SC', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            /* 叠加一层极轻微的噪点纹理，模拟画纸质感 */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* 顶部 Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            padding-top: 100px;
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: var(--accent-blue);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 60px;
+            font-family: var(--font-serif);
+        }
+
+        /* 章节通用样式 */
+        .section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-blue);
+            margin-right: 15px;
+        }
+
+        /* 理念与定位 */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .philosophy-card {
+            padding-left: 20px;
+            border-left: 1px solid var(--line-color);
+        }
+
+        .philosophy-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .philosophy-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* 核心案例 */
+        .case-item {
+            margin-bottom: 80px;
+        }
+
+        .case-header {
+            margin-bottom: 25px;
+        }
+
+        .case-role {
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .case-header h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .case-points {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .case-points li {
+            margin-bottom: 12px;
+            padding-left: 15px;
+            position: relative;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .case-points li::before {
+            content: '·';
+            color: var(--accent-blue);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+        }
+
+        .case-points strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* 链接卡片 (替代原来的大按钮) */
+        .link-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .art-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: #fff;
+            border: 1px solid var(--line-color);
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .art-link:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(26, 59, 102, 0.08);
+        }
+
+        .art-link span.tag {
+            background: var(--bg-color);
+            color: var(--text-light);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            margin-right: 15px;
+            border: 1px solid var(--line-color);
+        }
+
+        .art-link strong {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .art-link i {
+            margin-left: auto;
+            color: var(--accent-blue);
+            font-style: normal;
+            font-family: var(--font-serif);
+        }
+
+        /* 小型案例网格 */
+        .mini-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .mini-case {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid var(--line-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .mini-case h4 {
+            font-family: var(--font-serif);
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .mini-case p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* 媒体与工具栈 */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .stack-card h3 {
+            font-family: var(--font-serif);
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .stack-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stack-tag {
+            background: #fff;
+            border: 1px solid var(--line-color);
+            padding: 6px 15px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        /* 个人偏好 / 趣味模块 */
+        .chiikawa-box {
+            background: #fff;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            border: 1px solid var(--line-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            position: relative;
+        }
+        
+        .chiikawa-box::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 4px; height: 100%;
+            background-color: var(--accent-blue);
+        }
+
+        .chiikawa-text h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .chiikawa-text p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .chiikawa-emojis {
+            font-size: 3.5rem;
+            white-space: nowrap;
+        }
+
+        /* 下载按钮悬浮 */
+        .btn-container {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            z-index: 100;
+        }
+
+        .download-btn {
+            background-color: var(--accent-blue);
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 25px rgba(26, 59, 102, 0.2);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .download-btn:hover {
+            background-color: var(--text-main);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(26, 59, 102, 0.3);
+        }
+
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-family: var(--font-serif);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .container { padding: 0 20px; }
+            .stack-grid { grid-template-columns: 1fr; }
+            .chiikawa-box { flex-direction: column; text-align: left; align-items: flex-start; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="btn-container" id="action-buttons">
+        <button class="download-btn" onclick="generateSeamlessPDF()">生成无缝长图 PDF</button>
+    </div>
+
+    <!-- 包裹层：用于截图生成长图 -->
+    <div id="portfolio-content" style="background-color: #F8F9FA;">
+        <div class="container">
+            
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-subtitle">Jingyi Liang / PR & Brand Strategist</div>
+                <h1>Artistic <em>&</em><br>Avant-garde.</h1>
+                <p>连接前沿科技与全球商业语境。我致力于将复杂的具身智能与 AI 基础设施语言，转化为资本市场、媒体与全球开发者能听懂的性感商业叙事。</p>
+            </section>
+
+            <!-- 个人定位 -->
+            <section class="section">
+                <h2 class="section-title">核心定位</h2>
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <h3>科技原生基因 (Tech-Native)</h3>
+                        <p>不仅懂公关，更懂技术逻辑。善于利用 Vibe Coding、OpenClaw 等自动化工具赋能宣发，对标前沿企业落地官网设计与增长策略。</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <h3>全球化视野 (Global-First)</h3>
+                        <p>从深圳到拉美，凭借 TEM-8 英语与跨文化本地化经验，为出海企业建立真正具备国际影响力的品牌资产。</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <h3>增长导向 (Growth-Driven)</h3>
+                        <p>公关不仅是发声，更是为了估值与转化。擅长搭建媒体矩阵与 SOP 工作流，将品牌声量直接转化为融资支持与业务增长。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心案例深度解析 -->
+            <section class="section">
+                <h2 class="section-title">公关与传播实战</h2>
+
+                <!-- 案例 1: 枢途科技 -->
+                <div class="case-item">
+                    <div class="case-header">
+                        <span class="case-role">枢途科技 (Synapath AI)</span>
+                        <h3>品牌构建与融资关系：向资本讲好“具身智能”故事</h3>
+                    </div>
+                    <ul class="case-points">
+                        <li><strong>NVIDIA GTC 宣发战役：</strong> 策划并执行了包含 CEO 参会海报、预热及深度复盘的长文，精准传达技术壁垒。</li>
+                        <li><strong>深度内容与快速学习：</strong> 迅速建立对具身智能赛道的认知，在小红书平台持续输出高专业度的赛道科普与观察。</li>
+                        <li><strong>AI 自动化赋能：</strong> 利用 OpenClaw 建立赛道前沿资讯的自动抓取脚本，生成周报并无缝转化为小红书内容。</li>
+                        <li><strong>前端落地与企业文化：</strong> 运用 Vibe Coding 辅助完成品牌官网设计；牵头创立企业“软实力俱乐部”，提升团队极客文化认同。</li>
+                    </ul>
+                    
+                    <div class="link-group">
+                        <a href="https://mp.weixin.qq.com/s/7XFcpfQPl4QzG5SFf5P3zQ" class="art-link" target="_blank">
+                            <span class="tag">微信公众号</span>
+                            <strong>NVIDIA GTC 演讲宣发与深度复盘</strong>
+                            <i>Read More →</i>
+                        </a>
+                        <a href="http://xhslink.com/o/24HJ4vSEhxk" class="art-link" target="_blank">
+                            <span class="tag">小红书</span>
+                            <strong>具身智能 Benchmark 现状分享</strong>
+                            <i>Read More →</i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 案例 2: 奇绩创坛 -->
+                <div class="case-item">
+                    <div class="case-header">
+                        <span class="case-role">奇绩创坛 (MiraclePlus)</span>
+                        <h3>深度内容与 SOP 增长引擎</h3>
+                    </div>
+                    <ul class="case-points">
+                        <li><strong>深度内容提炼：</strong> 参与《大模型笔记》及《创业者访谈》深度内容输出，负责核心高光片段的切片与二次传播。</li>
+                        <li><strong>全平台媒体矩阵：</strong> 搭建并运营覆盖小红书、推特 (X)、小宇宙、公众号、知乎、即刻、LinkedIn 的海内外内容矩阵。</li>
+                        <li><strong>大型活动支持：</strong> 建立内容分发 SOP，为奇绩创坛路演日 (Demo Day) 提供全方位前后期宣发与现场支持。</li>
+                    </ul>
+
+                    <div class="link-group">
+                        <a href="http://xhslink.com/o/5e3bmHSlxEB" class="art-link" target="_blank">
+                            <span class="tag">小红书</span>
+                            <strong>创始人访谈：影石 Insta360 刘靖康谈创业初期团队打造</strong>
+                            <i>Read More →</i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 案例 3: 渤海信托 -->
+                <div class="case-item">
+                    <div class="case-header">
+                        <span class="case-role">渤海国际信托</span>
+                        <h3>金融公关与专业深度撰稿</h3>
+                    </div>
+                    <ul class="case-points">
+                        <li><strong>专业财经叙事：</strong> 聚焦资管领域，研读监管政策与业务研报，撰写多篇深度财经稿件，具备扎实的金融商业逻辑。</li>
+                        <li><strong>媒体关系对接：</strong> 维护与主流财经媒体的深度合作关系，推动高管专访与专业文章在权威媒体（如河北日报）首发及全网转载。</li>
+                    </ul>
+
+                    <div class="link-group">
+                        <a href="https://mp.weixin.qq.com/s/C-30WGP3PRlahLrgcHIH_Q" class="art-link" target="_blank">
+                            <span class="tag">深度报道</span>
+                            <strong>董事长卓逸群：探索养老金融的信托解决方案 (篇一)</strong>
+                            <i>Read More →</i>
+                        </a>
+                        <a href="https://mp.weixin.qq.com/s/pXnidzoJK3_WwlR89io9DQ" class="art-link" target="_blank">
+                            <span class="tag">深度报道</span>
+                            <strong>董事长卓逸群：探索养老金融的信托解决方案 (篇二)</strong>
+                            <i>Read More →</i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 更多经历 -->
+            <section class="section">
+                <h2 class="section-title">全球化与大型活动</h2>
+                <div class="mini-cases-grid">
+                    <div class="mini-case">
+                        <h4>安永 (EY)</h4>
+                        <p><strong>服贸会直播与支持：</strong> 参与大型国际会议传播执行，统筹直播物料与现场支持，保障国际化专业品牌形象，驱动核心智库报告下载量提升。</p>
+                    </div>
+                    <div class="mini-case">
+                        <h4>巴西孔子学院</h4>
+                        <p><strong>跨文化本地化执行：</strong> 独立策划落地多场跨文化品牌活动，对接 VIVO 等出海中企，展现卓越的海外线下活动落地与全英语社群管理能力。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 媒体关系与工具栈 -->
+            <section class="section">
+                <h2 class="section-title">工具栈与生态网络</h2>
+                <div class="stack-grid">
+                    <div class="stack-card">
+                        <h3>核心媒体库</h3>
+                        <div class="stack-tags">
+                            <span class="stack-tag">36Kr</span>
+                            <span class="stack-tag">雷锋网</span>
+                            <span class="stack-tag">具身之心</span>
+                            <span class="stack-tag">新华网</span>
+                            <span class="stack-tag">主流财经媒体</span>
+                            <span class="stack-tag">海外 Web3 社区</span>
+                        </div>
+                    </div>
+                    <div class="stack-card">
+                        <h3>AI 工作流</h3>
+                        <div class="stack-tags">
+                            <span class="stack-tag">大模型 Prompting</span>
+                            <span class="stack-tag">Vibe Coding</span>
+                            <span class="stack-tag">OpenClaw 爬虫</span>
+                            <span class="stack-tag">Trello</span>
+                            <span class="stack-tag">数据分析工具</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 个人偏好 / 趣味模块 -->
+            <section class="section" style="border-bottom: none;">
+                <h2 class="section-title">Personal Touch</h2>
+                <div class="chiikawa-box">
+                    <div class="chiikawa-emojis">
+                        🌰 🦁
+                    </div>
+                    <div class="chiikawa-text">
+                        <h3>像栗子馒头一样战斗，像狮萨一样沟通</h3>
+                        <p>我非常喜欢《吉伊卡哇 (Chiikawa)》里的两个角色。在工作中，我像<strong>栗子馒头</strong>一样武力值满点、雷厉风行（大块喝酒吃肉的极客精神与执行力）；在对外公关与团队协作时，我又像<strong>狮萨 (Shisa)</strong> 一样轻声细语、极具共情力（做润滑剂与沟通花）。刚柔并济，是我作为 PR 策略师的最佳状态。</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2026 Jingyi Liang. Curated for Monolith.</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- 生成 PDF 的核心逻辑 -->
+    <script>
+        async function generateSeamlessPDF() {
+            const btnContainer = document.getElementById('action-buttons');
+            const content = document.getElementById('portfolio-content');
+            
+            // 1. 隐藏按钮
+            btnContainer.style.display = 'none';
+            
+            // 2. 锁定宽度以防止响应式在截图中变形 (模拟桌面端视角)
+            const originalWidth = content.style.width;
+            content.style.width = '1000px'; 
+            content.style.margin = '0 auto';
+
+            // 提示用户正在生成
+            const loadingMsg = document.createElement('div');
+            loadingMsg.innerText = '正在生成高画质无缝长图 PDF，请稍候...';
+            loadingMsg.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:rgba(26,59,102,0.9); color:#fff; padding:20px 40px; font-family:sans-serif; font-size:14px; z-index:999; border-radius:4px;';
+            document.body.appendChild(loadingMsg);
+
+            try {
+                // 3. 使用 html2canvas 将整个容器渲染为一张高精度 Canvas
+                const canvas = await html2canvas(content, {
+                    scale: 2, // 提高清晰度
+                    useCORS: true,
+                    backgroundColor: '#F8F9FA'
+                });
+
+                // 4. 将 Canvas 转为图片数据
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                const { jsPDF } = window.jspdf;
+
+                // 5. 根据图片实际宽高比例，创建一个无缝的单页 PDF
+                const pdfWidth = canvas.width;
+                const pdfHeight = canvas.height;
+                
+                // 设置 PDF 的尺寸完全等于 Canvas 的尺寸
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'px',
+                    format: [pdfWidth, pdfHeight]
+                });
+
+                // 将图片贴满这一整页
+                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                
+                // 6. 触发下载
+                pdf.save('梁婧仪_Monolith_PR作品集.pdf');
+                
+            } catch (error) {
+                console.error("PDF 生成失败: ", error);
+                alert("生成失败，请检查网络连接以确保截图库正常加载。");
+            } finally {
+                // 7. 恢复页面原本状态
+                content.style.width = originalWidth;
+                btnContainer.style.display = 'block';
+                document.body.removeChild(loadingMsg);
+            }
+        }
+    </script>
+</body>
+</html>

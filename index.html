@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lia | PR 作品集</title>
+    <!-- 引入衬线字体，增加高级感与艺术感 -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* 提取自参考图的极简艺术配色 */
+            --bg-color: #F8F9FA;
+            /* 极浅的灰白底色 */
+            --text-main: #2C3E50;
+            /* 深灰蓝，比纯黑更柔和高级 */
+            --text-light: #596A7A;
+            --accent-blue: #1A3B66;
+            /* 核心点缀蓝 (类似参考图的刷色) */
+            --line-color: #D1D8E0;
+
+            /* 字体栈 */
+            --font-serif: 'Playfair Display', 'Noto Serif SC', 'Songti SC', serif;
+            --font-sans: 'Inter', -apple-system, 'PingFang SC', sans-serif;
+            --paper-base: #f2f1ee;
+            --paper-ink: #e3e0d9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f4f2;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            isolation: isolate;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(1400px 700px at 18% 24%, rgba(255, 255, 255, 0.97), rgba(244, 244, 241, 0.72) 66%, rgba(235, 233, 228, 0.64) 100%),
+                radial-gradient(1300px 620px at 72% 56%, rgba(255, 255, 255, 0.9), rgba(239, 238, 234, 0.74) 72%, rgba(233, 231, 226, 0.66) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 480 480' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Cfilter id='soft'%3E%3CfeGaussianBlur stdDeviation='0.9'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%23f4f4f2'/%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3Cpath d='M-30 120 C 76 30, 184 220, 290 114 C 368 36, 446 178, 520 86' stroke='%23e2e2de' stroke-width='28' fill='none' stroke-linecap='round' filter='url(%23soft)' opacity='0.78'/%3E%3Cpath d='M-24 116 C 82 26, 190 214, 294 110 C 372 34, 450 172, 526 82' stroke='%23f8f8f6' stroke-width='14' fill='none' stroke-linecap='round' opacity='0.82'/%3E%3Cpath d='M-26 292 C 70 214, 178 392, 286 304 C 370 236, 454 350, 522 276' stroke='%23e4e3de' stroke-width='24' fill='none' stroke-linecap='round' filter='url(%23soft)' opacity='0.72'/%3E%3Cpath d='M-20 288 C 76 210, 182 386, 290 300 C 374 234, 456 346, 526 272' stroke='%23f8f8f6' stroke-width='12' fill='none' stroke-linecap='round' opacity='0.78'/%3E%3C/svg%3E");
+            background-size: cover, cover, 620px 620px;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            left: -6%;
+            top: 52vh;
+            width: 112%;
+            height: 42px;
+            transform: rotate(-1.5deg);
+            z-index: -1;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 46%),
+                radial-gradient(circle at 10% 38%, rgba(255, 255, 255, 0.62) 0 1.1px, transparent 1.2px),
+                radial-gradient(circle at 28% 64%, rgba(255, 255, 255, 0.52) 0 1.2px, transparent 1.4px),
+                radial-gradient(circle at 46% 44%, rgba(255, 255, 255, 0.6) 0 1.1px, transparent 1.3px),
+                radial-gradient(circle at 64% 62%, rgba(255, 255, 255, 0.54) 0 1.2px, transparent 1.4px),
+                radial-gradient(circle at 82% 46%, rgba(255, 255, 255, 0.58) 0 1.1px, transparent 1.3px),
+                radial-gradient(circle at 96% 60%, rgba(255, 255, 255, 0.5) 0 1.1px, transparent 1.3px),
+                linear-gradient(90deg, #17386a 0%, #25508e 34%, #2f63ad 52%, #25508e 71%, #17386a 100%);
+            background-size: 100% 100%, 170px 42px, 180px 42px, 200px 42px, 220px 42px, 190px 42px, 220px 42px, 100% 100%;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 10px rgba(17, 41, 82, 0.24);
+            pointer-events: none;
+            clip-path: polygon(0 8%, 100% 0, 100% 84%, 0 100%);
+        }
+
+        #portfolio-content {
+            position: relative;
+        }
+
+        #portfolio-content::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 180px;
+            transform: translateX(-50%);
+            width: 86%;
+            height: 520px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.26;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 960 520' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='soft'%3E%3CfeGaussianBlur stdDeviation='1.8'/%3E%3C/filter%3E%3C/filter id='subtle'%3E%3CfeGaussianBlur stdDeviation='0.8'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M60 190 C 180 88, 308 300, 430 188 C 550 84, 680 292, 806 182' stroke='%23e3e2dd' stroke-width='72' fill='none' stroke-linecap='round' filter='url(%23soft)' opacity='0.65'/%3E%3Cpath d='M64 188 C 186 86, 312 298, 434 186 C 554 82, 686 290, 812 180' stroke='%23faf9f7' stroke-width='24' fill='none' stroke-linecap='round' filter='url(%23subtle)' opacity='0.86'/%3E%3C/svg%3E") no-repeat center/contain;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* 顶部 Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            padding-top: 72px;
+            border-bottom: 1px solid var(--line-color);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #1a2e57;
+            margin-bottom: 14px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #111d4d;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 32px;
+            font-family: var(--font-serif);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .link-group {
+            width: 100%;
+        }
+
+        .hero .art-link {
+            width: 100%;
+        }
+
+        /* 章节通用样式 */
+        .section {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            margin-bottom: 28px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-blue);
+            margin-right: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 52px;
+            bottom: -6px;
+            width: 180px;
+            height: 10px;
+            background: linear-gradient(90deg, rgba(30, 67, 122, 0.18), rgba(30, 67, 122, 0.04));
+            filter: blur(0.4px);
+            border-radius: 999px;
+            pointer-events: none;
+        }
+
+        /* 理念与定位 */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .philosophy-card {
+            padding-left: 20px;
+            border-left: 1px solid var(--line-color);
+        }
+
+        .philosophy-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .philosophy-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* 核心案例 */
+        .case-item {
+            margin-bottom: 44px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            align-items: start;
+        }
+
+        .case-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 纯文字案例布局：不展示图片 */
+
+        .case-header {
+            margin-bottom: 16px;
+        }
+
+        .case-role {
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .case-header h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .case-points {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .case-points li {
+            margin-bottom: 12px;
+            padding-left: 15px;
+            position: relative;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .case-points li::before {
+            content: '·';
+            color: var(--accent-blue);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+        }
+
+        .case-points strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* 链接卡片 (替代原来的大按钮) */
+        .link-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .art-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 18px;
+            background: #fff;
+            border: 1px solid var(--line-color);
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .art-link:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 59, 102, 0.08);
+        }
+
+        .art-link span.tag {
+            background: #f1f3f5;
+            color: var(--text-light);
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            margin-right: 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .platform-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            object-fit: contain;
+            flex-shrink: 0;
+            align-self: center;
+        }
+
+        .art-link strong {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .art-link i {
+            margin-left: auto;
+            color: var(--accent-blue);
+            font-style: normal;
+            font-family: var(--font-serif);
+        }
+
+        .art-note {
+            cursor: default;
+            opacity: 0.9;
+        }
+
+        .art-note:hover {
+            border-color: var(--line-color);
+            transform: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        /* 出版物网格样式 */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .pub-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 18px;
+            background-color: #fff;
+            border: 1px solid var(--line-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .pub-link:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 59, 102, 0.08);
+        }
+
+        .pub-link .platform-icon {
+            width: 15px;
+            height: 15px;
+            margin-right: 12px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .pub-link:hover .platform-icon {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        .pub-link strong {
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: var(--font-sans);
+        }
+
+        .pub-link i {
+            margin-left: auto;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .pub-link:hover i {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .pub-tag {
+            font-size: 0.68rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-right: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            font-family: var(--font-sans);
+        }
+        
+        .tag-insight {
+            background-color: #f1f3f5;
+            color: #495057;
+        }
+        
+        .tag-event {
+            background-color: #e9ecef;
+            color: #343a40;
+        }
+        
+        .tag-weekly {
+            background-color: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .tag-official {
+            background-color: #e7f5ff;
+            color: #1c7ed6;
+        }
+
+        footer {
+            padding: 36px 0;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-family: var(--font-serif);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .case-item {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            body::after {
+                top: 42vh;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 包裹层：用于截图生成长图 -->
+    <div id="portfolio-content" style="background-color: #F8F9FA;">
+        <div class="container">
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-subtitle">Portfolio</div>
+                <h1>Lia</h1>
+                <p>聚焦 AI 与具身智能赛道的品牌传播与增长。擅长将复杂技术语言转化为资本市场、行业媒体与开发者都能理解的商业叙事，并通过内容、媒体关系与 SOP 工作流把传播结果落实到融资沟通与业务增长。</p>
+            </section>
+
+            <!-- 个人定位 -->
+            <section class="section">
+                <h2 class="section-title">核心定位</h2>
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <h3>科技原生基因 (Tech-Native)</h3>
+                        <p>不仅懂传播，也能快速理解技术脉络。可用 Vibe Coding、OpenClaw 等 AI Native 工作流提升内容生产与分发效率，并参与官网与品牌资产落地。</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <h3>全球化视野 (Global-First)</h3>
+                        <p>有拉美实战经历，能够在全英语协作环境中完成跨文化内容与线下活动落地，并兼顾本地语境和品牌一致性。</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <h3>增长导向 (Growth-Driven)</h3>
+                        <p>坚持传播结果可衡量。过往项目中通过选题与分发优化，推动核心报告下载量提升 20%，并在多平台传播中持续迭代内容策略。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心案例深度解析 -->
+            <section class="section">
+                <h2 class="section-title">公关与传播实战</h2>
+
+                <!-- 案例 1: 枢途科技 -->
+                <div class="case-item">
+                    <div class="case-content">
+                        <div class="case-header">
+                            <span class="case-role">枢途科技 (Synapath AI)</span>
+                            <h3>品牌构建与融资叙事</h3>
+                        </div>
+                        <ul class="case-points">
+                            <li><strong>核心叙事与全球传播：</strong> 深度策划并复盘 NVIDIA GTC 等全球顶级技术峰会的传播战役，构建并强化“具身智能 + AI 基础设施”的高壁垒商业叙事。</li>
+                            <li><strong>技术理解与内容工程：</strong> 凭借对硬核 AI 赛道的极速学习能力，持续输出高质量科普与行业观察，精准弥合技术前沿与市场认知间的鸿沟。</li>
+                            <li><strong>AI-Native 工作流赋能：</strong> 主导自动化资讯追踪系统，实现前沿情报的实时抓取与素材池沉淀，驱动选题响应速度与分发效率的指数级提升。</li>
+                            <li><strong>品牌资产与出海官网落地：</strong> 独立担纲英文官网的视觉叙事与文案架构，并全程通过 Vibe Coding 模式实现从设计到全球化部署的高效闭环。</li>
+                            <li><strong>全网矩阵与搜索增长 (SEO/GEO)：</strong> 搭建并运营多平台媒体矩阵，前瞻性引入 GEO 策略，显著提升品牌在主流搜索与大语言模型推荐生态中的权位。</li>
+                        </ul>
+
+                        <div style="margin-top: 35px; border-top: 1px dashed var(--line-color); padding-top: 25px;">
+                            <h4 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--text-main); margin-bottom: 15px; display: flex; align-items: center;">
+                                品牌资产与内容矩阵
+                                <span style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600; color: var(--text-light); margin-left: 12px; letter-spacing: 1px; text-transform: uppercase;">Works & Publications</span>
+                            </h4>
+                            <div class="publications-grid">
+                                <a href="https://www.synapath.ai/" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-official">官方网站</span>
+                                    <strong>Synapath AI 英文官方网站</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="https://mp.weixin.qq.com/s/7XFcpfQPl4QzG5SFf5P3zQ" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-insight">行业洞察</span>
+                                    <strong>英伟达 GTC 参会宣发与深度复盘</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="https://xhslink.com/o/24HJ4vSEhxk" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-insight">行业洞察</span>
+                                    <strong>具身智能 Benchmark 现状分享</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="https://mp.weixin.qq.com/s/oZicwLMPNz89iCpAqekytA" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-event">融资交流</span>
+                                    <strong>向资本市场讲好“硬核科技”故事</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="https://mp.weixin.qq.com/s/UXe8xVT3NQV9nKUwI1faDg" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-event">奖项荣誉</span>
+                                    <strong>枢途科技荣获年度创新技术奖项</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="https://mp.weixin.qq.com/s/URFW4BrTHdMiZxKZ02nLsA" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-event">战略合作</span>
+                                    <strong>深度布局：携手伙伴共建产业生态</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="https://mp.weixin.qq.com/s/2TLnRVy1udqw-9Da7OZV_w" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-insight">高管发声</span>
+                                    <strong>CEO 访谈：具身智能的技术演进逻辑</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="https://news.marketersmedia.com/synapath-ai-open-sources-hora-the-video-driven-data-foundation-built-to-scale-physical-ai/89190054" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-insight">海外稿件</span>
+                                    <strong>Synapath AI Open-Sources HORA</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="https://mp.weixin.qq.com/s/klquvSNRTJ2WmYnhYKSFWA" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-event">展会活动</span>
+                                    <strong>展会现场：年度重磅活动执行纪实</strong>
+                                    <i>↗</i>
+                                </a>
+                                <a href="./openclaw-2026-W10-weekly.pdf" class="pub-link" target="_blank">
+                                    <span class="pub-tag tag-weekly">自动化追踪</span>
+                                    <strong>具身智能行业周报 (OpenClaw)</strong>
+                                    <i>↗</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例 2: 奇绩创坛 -->
+                <div class="case-item">
+                    <div class="case-content">
+                        <div class="case-header">
+                            <span class="case-role">奇绩创坛 (MiraclePlus)</span>
+                            <h3>深度内容与矩阵增长</h3>
+                        </div>
+                        <ul class="case-points">
+                            <li><strong>核心内容提炼：</strong> 参与《大模型笔记》《创业者访谈》等系列选题与内容生产，突出创始人经验的可传播信息密度。</li>
+                            <li><strong>全网媒体矩阵：</strong> 支持覆盖小红书、X、公众号、知乎、即刻、LinkedIn、小宇宙的平台协同分发。</li>
+                            <li><strong>传播 SOP 沉淀：</strong> 参与 Demo Day 等关键节点的全流程内容协同，形成可复用的跨团队执行机制。</li>
+                        </ul>
+
+                        <div class="link-group">
+                            <a href="https://xhslink.com/o/5e3bmHSlxEB" class="art-link" target="_blank">
+                                <img src="https://cdn.simpleicons.org/xiaohongshu/FF2442" alt="小红书"
+                                    class="platform-icon" crossorigin="anonymous">
+                                <strong>创始人访谈：影石 Insta360 刘靖康访谈</strong>
+                                <i>Read More →</i>
+                            </a>
+                            <a href="https://mp.weixin.qq.com/s/pXnidzoJK3_WwlR89io9DQ" class="art-link"
+                                target="_blank">
+                                <img src="https://cdn.simpleicons.org/wechat/07C160" alt="微信公众号" class="platform-icon"
+                                    crossorigin="anonymous">
+                                <strong>奇绩创坛大模型笔记</strong>
+                                <i>Read More →</i>
+                            </a>
+                            <a href="https://mp.weixin.qq.com/s/TnvkKjuc3w2--NDP3VqBig" class="art-link"
+                                target="_blank">
+                                <img src="https://cdn.simpleicons.org/wechat/07C160" alt="微信公众号" class="platform-icon"
+                                    crossorigin="anonymous">
+                                <strong>Demo Day：奇绩创坛路演日传播</strong>
+                                <i>Read More →</i>
+                            </a>
+                            <a href="https://mp.weixin.qq.com/s/C-30WGP3PRlahLrgcHIH_Q" class="art-link"
+                                target="_blank">
+                                <img src="https://cdn.simpleicons.org/wechat/07C160" alt="微信公众号" class="platform-icon"
+                                    crossorigin="anonymous">
+                                <strong>影石 Insta360 刘靖康访谈</strong>
+                                <i>Read More →</i>
+                            </a>
+                            <a href="http://xhslink.com/o/1ONuK92lMoi" class="art-link" target="_blank">
+                                <img src="https://cdn.simpleicons.org/xiaohongshu/FF2442" alt="小红书"
+                                    class="platform-icon" crossorigin="anonymous">
+                                <strong>校友融资新闻</strong>
+                                <i>Read More →</i>
+                            </a>
+                            <a href="http://xhslink.com/o/AigYtAQiMsw" class="art-link" target="_blank">
+                                <img src="https://cdn.simpleicons.org/xiaohongshu/FF2442" alt="小红书"
+                                    class="platform-icon" crossorigin="anonymous">
+                                <strong>陆奇博士 AMA 系列笔记</strong>
+                                <i>Read More →</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 更多经历精简版：突出跨领域与全球化能力 -->
+            <section class="section">
+                <h2 class="section-title">商业公关与多元执行</h2>
+
+                <div class="case-item" style="margin-bottom: 30px;">
+                    <div class="case-content">
+                        <div class="case-header" style="margin-bottom: 8px;">
+                            <span class="case-role">安永 (EY) & 渤海国际信托</span>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">专业服务与财经公关</h3>
+                        </div>
+                        <ul class="case-points">
+                            <li><strong>智库与资管叙事：</strong> 产出 20+ 篇行业洞察与养老金融政策解读，推动安永核心报告下载量提升 20%，并在主流财经媒体实现信托高质量专稿落地。
+                            </li>
+                            <li><strong>大型会议传播：</strong> 参与服贸会等展会传播执行，保障对外内容节奏与品牌一致性。</li>
+                        </ul>
+                        <div class="link-group" style="flex-direction: row; flex-wrap: wrap; gap: 10px;">
+                            <a href="https://mp.weixin.qq.com/s/T39eKpg6FJNba4TV-jqRfQ" class="art-link"
+                                style="padding: 8px 15px;" target="_blank">
+                                <strong>安永服贸会系列</strong>
+                            </a>
+                            <a href="https://www.yanglee.com/Research/Details.aspx?i=125610" class="art-link"
+                                style="padding: 8px 15px;" target="_blank">
+                                <strong>信托高质量发展专稿</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-item" style="margin-bottom: 0;">
+                    <div class="case-content">
+                        <div class="case-header" style="margin-bottom: 8px;">
+                            <span class="case-role">巴西伯南布哥大学孔子学院</span>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">跨文化协作与本地化落地</h3>
+                        </div>
+                        <ul class="case-points">
+                            <li><strong>跨文化活动执行：</strong> 全英语环境下推进品牌沟通，策划并主持线下活动，累计触达 1000+ 人次。</li>
+                            <li><strong>中企出海支持：</strong> 支持中资企业本地化沟通场景，积累海外组织协作经验，保持本地语境与品牌调性统一。</li>
+                        </ul>
+                        <div class="link-group" style="flex-direction: row; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                            <a href="https://mp.weixin.qq.com/s/mr5XT3t6BVLINrknPp8vxA" class="art-link" style="padding: 8px 15px;" target="_blank">
+                                <strong>书法讲座</strong>
+                            </a>
+                            <a href="https://mp.weixin.qq.com/s/jNSjTEv1D2mBZVuHItE-9A" class="art-link" style="padding: 8px 15px;" target="_blank">
+                                <strong>学期联欢会</strong>
+                            </a>
+                            <a href="https://mp.weixin.qq.com/s/FCpSiRdgd8alnxMbEp5R9w" class="art-link" style="padding: 8px 15px;" target="_blank">
+                                <strong>累西腓总领馆国庆招待会</strong>
+                            </a>
+                            <a href="https://mp.weixin.qq.com/s/5w2_qKKD61Fxu7PhJoIwag" class="art-link" style="padding: 8px 15px;" target="_blank">
+                                <strong>中资企业招聘会</strong>
+                            </a>
+                            <a href="https://mp.weixin.qq.com/s/Fw5mYzcSqHQaUsKh3m3DPQ" class="art-link" style="padding: 8px 15px;" target="_blank">
+                                <strong>中秋晚会</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2026 Lia. All Rights Reserved.</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
